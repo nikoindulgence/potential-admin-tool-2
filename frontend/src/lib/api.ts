@@ -1,8 +1,6 @@
-const isDev = process.env.NODE_ENV === 'development';
-// 本番環境ではVercelのServerless FunctionとしてデプロイされたFastAPIを直接使用
-const API_BASE_URL = isDev
-  ? process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1'
-  : process.env.NEXT_PUBLIC_API_URL || '/api/v1';
+// 環境変数からAPIのURLを取得（Renderにデプロイされたバックエンド）
+// ローカル開発時は http://localhost:8000/api/v1 を使用
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
 
 export class ApiError extends Error {
   constructor(
